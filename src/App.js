@@ -1,7 +1,7 @@
 import React from 'react'
 // import * as BooksAPI from './BooksAPI'
 import './App.css'
-import Book from './Book'
+import Bookshelf from './Bookshelf'
 
 class BooksApp extends React.Component {
   state = {
@@ -86,76 +86,18 @@ class BooksApp extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Currently Reading</h2>
-                  <div className="bookshelf-books">
-                    <ol className="books-grid">
-                      <li>
-                        <Book
-                          style={currentlyReadingBooks[0].style}
-                          title={currentlyReadingBooks[0].title}
-                          author={currentlyReadingBooks[0].author}
-                        />
-                      </li>
-                      <li>
-                        <Book 
-                          style={currentlyReadingBooks[1].style}
-                          title={currentlyReadingBooks[1].title}
-                          author={currentlyReadingBooks[1].author}
-                        />                                                   
-                      </li>
-                    </ol>
-                  </div>
-                </div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Want to Read</h2>
-                  <div className="bookshelf-books">
-                    <ol className="books-grid">
-                      <li>
-                        <Book 
-                          style={wantToReadBooks[0].style}
-                          title={wantToReadBooks[0].title}
-                          author={wantToReadBooks[0].author}
-                        />   
-                      </li>
-                      <li>
-                        <Book 
-                          style={wantToReadBooks[1].style}
-                          title={wantToReadBooks[1].title}
-                          author={wantToReadBooks[1].author}
-                        /> 
-                      </li>
-                    </ol>
-                  </div>
-                </div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Read</h2>
-                  <div className="bookshelf-books">
-                    <ol className="books-grid">
-                      <li>
-                        <Book 
-                          style={readBooks[0].style}
-                          title={readBooks[0].title}
-                          author={readBooks[0].author}
-                        /> 
-                      </li>
-                      <li>
-                      <Book 
-                          style={readBooks[1].style}
-                          title={readBooks[1].title}
-                          author={readBooks[1].author}
-                        /> 
-                      </li>
-                      <li>
-                      <Book 
-                          style={readBooks[2].style}
-                          title={readBooks[2].title}
-                          author={readBooks[2].author}
-                        /> 
-                      </li>
-                    </ol>
-                  </div>
-                </div>
+                <Bookshelf
+                  bookList={currentlyReadingBooks}
+                  title='Currently Reading'
+                />
+                <Bookshelf
+                  bookList={wantToReadBooks}
+                  title='Want to Read'
+                />
+                <Bookshelf
+                  bookList={readBooks}
+                  title='Read'
+                />
               </div>
             </div>
             <div className="open-search">
