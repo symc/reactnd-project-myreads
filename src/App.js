@@ -1,14 +1,14 @@
 import React from 'react'
 // import * as BooksAPI from './BooksAPI'
 import './App.css'
-import Bookshelf from './Bookshelf'
 import { Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import SearchBooks from './SearchBooks'
+import ListBooks from './ListBooks'
 
 class BooksApp extends React.Component {
-  render() {
-    const currentlyReadingBooks = [
+  state = {
+    currentlyReadingBooks: [
       {
         style: { width: 128, height: 193, backgroundImage: 'url("http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api")' }, 
         title: `To Kill A Mockingbird`,
@@ -19,8 +19,8 @@ class BooksApp extends React.Component {
         title: `Ender's Game`,
         author: `Orson Scott Card`
       }
-    ];
-    const wantToReadBooks = [
+    ],
+    wantToReadBooks: [
       {
         style: { width: 128, height: 193, backgroundImage: 'url("http://books.google.com/books/content?id=uu1mC6zWNTwC&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73pGHfBNSsJG9Y8kRBpmLUft9O4BfItHioHolWNKOdLavw-SLcXADy3CPAfJ0_qMb18RmCa7Ds1cTdpM3dxAGJs8zfCfm8c6ggBIjzKT7XR5FIB53HHOhnsT7a0Cc-PpneWq9zX&source=gbs_api")' },
         title: `1776`,
@@ -31,8 +31,8 @@ class BooksApp extends React.Component {
         title: `Harry Potter and the Sorcerer's Stone`,
         author: `J.K. Rowling`
       }
-    ];
-    const readBooks = [
+    ],
+    readBooks: [
       {
         style: { width: 128, height: 192, backgroundImage: 'url("http://books.google.com/books/content?id=pD6arNyKyi8C&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE70Rw0CCwNZh0SsYpQTkMbvz23npqWeUoJvVbi_gXla2m2ie_ReMWPl0xoU8Quy9fk0Zhb3szmwe8cTe4k7DAbfQ45FEzr9T7Lk0XhVpEPBvwUAztOBJ6Y0QPZylo4VbB7K5iRSk&source=gbs_api")' },
         title: `The Hobbit`,
@@ -48,39 +48,21 @@ class BooksApp extends React.Component {
         title: `The Adventures of Tom Sawyer`,
         author: `Mark Twain`
       }
-    ];
+    ]
+  };
+
+  render() {
     return (
       <div className="app">
         <Route exact path='/' render={() => (
-          <div className="list-books">
-            <div className="list-books-title">
-              <h1>MyReads</h1>
-            </div>
-            <div className="list-books-content">
-              <div>
-                <Bookshelf
-                  bookList={currentlyReadingBooks}
-                  title='Currently Reading'
-                />
-                <Bookshelf
-                  bookList={wantToReadBooks}
-                  title='Want to Read'
-                />
-                <Bookshelf
-                  bookList={readBooks}
-                  title='Read'
-                />
-              </div>
-            </div>
-            <div className="open-search">
-              <Link to='/search'>>Add a book</Link>
-            </div>
-          </div>
+          <ListBooks
+            currentlyReadingBooks={this.state.currentlyReadingBooks}
+            wantToReadBooks={this.state.wantToReadBooks}
+            readBooks={this.state.readBooks}
+          />
         )}/>
         <Route exact path='/search' render={() => (
-          <div>
-            <SearchBooks />
-          </div>
+          <SearchBooks />
         )}/> 
       </div>
     )
