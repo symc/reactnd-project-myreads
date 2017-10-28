@@ -4,7 +4,10 @@ import Bookshelf from './Bookshelf'
 
 class ListBooks extends Component {
     render() {
-        const {currentlyReadingBooks, wantToReadBooks, readBooks} = this.props;
+        const {currentlyReadingBooks, 
+            wantToReadBooks, 
+            readBooks, 
+            updateShelfOfBook} = this.props;
         return (
             <div className="list-books">
                 <div className="list-books-title">
@@ -15,14 +18,17 @@ class ListBooks extends Component {
                         <Bookshelf
                         bookList={currentlyReadingBooks}
                         title='Currently Reading'
+                        updateShelfOfBook={updateShelfOfBook}
                         />
                         <Bookshelf
                         bookList={wantToReadBooks}
                         title='Want to Read'
+                        updateShelfOfBook={updateShelfOfBook}
                         />
                         <Bookshelf
                         bookList={readBooks}
                         title='Read'
+                        updateShelfOfBook={updateShelfOfBook}
                         />
                     </div>
                 </div>
