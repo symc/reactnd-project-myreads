@@ -24,13 +24,11 @@ class BooksApp extends Component {
   };
 
   updateShelfOfBook = (bookToUpdate, newShelf) => {
-    const updatedBooks = this.state.books;
-    for (let ix = 0; ix < updatedBooks.length; ix++) {
-      if (updatedBooks[ix] === bookToUpdate) {
-        updatedBooks[ix].shelf = newShelf;
-      }
-    }
-    this.setState({books: updatedBooks});
+    BooksAPI.update(bookToUpdate, newShelf).then(() => {
+      BooksAPI.getAll().then((books) => {
+        this.setState({books}); 
+      });
+    });
   }
 
   render() {
