@@ -18,7 +18,6 @@ class BooksApp extends Component {
     });
   }
 
-
   getLibraryBooks = (libraryName) => {
     return this.state.books.filter((book) => (book.shelf === libraryName));
   };
@@ -43,7 +42,10 @@ class BooksApp extends Component {
           />
         )}/>
         <Route exact path='/search' render={() => (
-          <SearchBooks />
+          <SearchBooks
+            shelvedBooks={this.state.books}
+            updateShelfOfBook={this.updateShelfOfBook}
+          />
         )}/> 
       </div>
     )

@@ -3,10 +3,11 @@ import BookshelfChanger from './BookshelfChanger'
 
 class Book extends Component {
     render() {
+        const imageLink = this.props.book.imageLinks.smallThumbnail;
         const style = {
             width: 128,
             height: 192,
-            backgroundImage: 'url(' + this.props.book.imageLinks.smallThumbnail +')'
+            backgroundImage: 'url(' + imageLink +')'
         };
         const title = this.props.book.title;
         const author = this.props.book.authors.join(', ');
