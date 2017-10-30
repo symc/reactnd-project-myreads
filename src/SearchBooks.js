@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Book from './Book';
 import * as BooksAPI from './BooksAPI';
 import PropTypes from 'prop-types';
+import sortBy from 'sort-by';
 
 /**
 * @description SearchBooks component
@@ -86,6 +87,9 @@ class SearchBooks extends Component {
     render() {
         let {query, showingBooks} = this.state
         const updateShelfOfBook = this.props.updateShelfOfBook;
+
+        /* Display the books in sorted order by title */
+        showingBooks.sort(sortBy('title'));
 
         /* Make sure that the showingBooks is empty for an empty query
          * before rendering the page */
