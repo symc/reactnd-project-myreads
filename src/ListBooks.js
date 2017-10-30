@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Bookshelf from './Bookshelf'
+import PropTypes from 'prop-types'
 
 class ListBooks extends Component {
     render() {
@@ -39,5 +40,12 @@ class ListBooks extends Component {
         );
     }
 }
+
+ListBooks.propTypes = {
+    currentlyReadingBooks: PropTypes.array.isRequired,
+    wantToReadBooks: PropTypes.array.isRequired,
+    readBooks: PropTypes.array.isRequired,
+    updateShelfOfBook: PropTypes.func.isRequired
+};
 
 export default ListBooks;
