@@ -1,15 +1,35 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import Book from './Book'
-import * as BooksAPI from './BooksAPI'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import Book from './Book';
+import * as BooksAPI from './BooksAPI';
+import PropTypes from 'prop-types';
 
+/**
+* @description SearchBooks component
+* @constructor
+* Describes a UI element with:
+* - a search bar
+* - an area that displays the books matching the search phrase
+*/
 class SearchBooks extends Component {
+    /**
+    * @description constructor of BooksApp
+    * Initializes the state variable query to an empty string, and
+    * state element showing books to an empty array
+    */
     constructor(props) {
         super(props);
         this.state = {query: '', showingBooks: []};
-    };
+    }
 
+    /**
+    * @description updateShelfFields method of the SearchBooks component
+    * @param {string} books - A list of books
+    * For every element in the list of books, checks if this book is 
+    * located in one of the shelves. If this is the case, the method updates
+    * shelf parameter of the book object to the name of this shelf. Otherwise,
+    * shelf object is set to 'none'.
+    */
     updateShelfFields = (books) => {
         books.forEach((book) => {
             book.shelf = 'none'
@@ -19,12 +39,19 @@ class SearchBooks extends Component {
                 }
             });
         });
-    }
+    };
 
+    /**
+    * @description updateShowingBooks method of the SearchBooks component
+    * @param {string} query- A search query string
+    * Updates the state showingBooks based on the provided query string
+    * so that showingBooks contains the books that match to this query
+    */
     updateShowingBooks = (query) => {
         if (query) {
             BooksAPI.search(query, 20).then((books) => {
                 if (books.error) {
+                    /* In the case of an error, set showingBooks to empty */
                     this.setState({showingBooks: []});
                 } else {
                     books = books.filter((book) => book.imageLinks);
@@ -33,15 +60,24 @@ class SearchBooks extends Component {
                         this.updateShelfFields(books);
                         this.setState({showingBooks: books});
                     } else {
+                        /* In the case of an empty list, make sure the state
+                         * is cleared */
                         this.setState({showingBooks: []});
                     }
                 }
             });
         } else {
+            /* In the case of an empty query, make sure the state is cleared */
             this.setState({showingBooks: []});
         }
-    };   
+    };
 
+    /**
+    * @description updateQuery method of the SearchBooks component
+    * @param {string} query- A search query string
+    * Updates the query state so that the page is rendered in real time
+    * as the user types a query in the search bar
+    */
     updateQuery = (query) => {
         this.setState({query});
         this.updateShowingBooks(query);
@@ -51,6 +87,8 @@ class SearchBooks extends Component {
         let {query, showingBooks} = this.state
         const updateShelfOfBook = this.props.updateShelfOfBook;
 
+        /* Make sure that the showingBooks is empty for an empty query
+         * before rendering the page */
         if (this.state.query === '') {
             showingBooks = [];
         }

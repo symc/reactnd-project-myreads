@@ -1,8 +1,17 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import Bookshelf from './Bookshelf'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import Bookshelf from './Bookshelf';
+import PropTypes from 'prop-types';
 
+/**
+* @description ListBooks component
+* @constructor
+* Describes a UI element with:
+* - a header that contains the app title
+* - three book shelves, each represented by a Bookshelf component
+* - a link to add a book (directing the user to search page)
+* Book shelves displays the books that are currently in that shelf.
+*/
 class ListBooks extends Component {
     render() {
         const {currentlyReadingBooks, 
@@ -17,19 +26,19 @@ class ListBooks extends Component {
                 <div className="list-books-content">
                     <div>
                         <Bookshelf
-                        bookList={currentlyReadingBooks}
-                        title='Currently Reading'
-                        updateShelfOfBook={updateShelfOfBook}
+                            bookList={currentlyReadingBooks}
+                            title='Currently Reading'
+                            updateShelfOfBook={updateShelfOfBook}
                         />
                         <Bookshelf
-                        bookList={wantToReadBooks}
-                        title='Want to Read'
-                        updateShelfOfBook={updateShelfOfBook}
+                            bookList={wantToReadBooks}
+                            title='Want to Read'
+                            updateShelfOfBook={updateShelfOfBook}
                         />
                         <Bookshelf
-                        bookList={readBooks}
-                        title='Read'
-                        updateShelfOfBook={updateShelfOfBook}
+                            bookList={readBooks}
+                            title='Read'
+                            updateShelfOfBook={updateShelfOfBook}
                         />
                     </div>
                 </div>

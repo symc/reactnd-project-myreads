@@ -1,7 +1,17 @@
-import React, { Component } from 'react'
-import BookshelfChanger from './BookshelfChanger'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import BookshelfChanger from './BookshelfChanger';
+import PropTypes from 'prop-types';
 
+/**
+* @description Book component
+* @constructor
+* Describes a UI element that describes a book. Each book has:
+* - a book cover of size 128 x 192, and an image url
+* - a title
+* - a list of authors, seperated by a comma
+* - a button, represented by a BookshelfChanger component, that can change
+* the shelf of the book.
+*/
 class Book extends Component {
     render() {
         const imageLink = this.props.book.imageLinks.smallThumbnail;
