@@ -82,7 +82,7 @@ class SearchBooks extends Component {
     updateQuery = debounce((query) => {
         this.setState({query});
         this.updateShowingBooks(query);
-    });
+    }, 100, {leading: true});
 
     render() {
         let {query, showingBooks} = this.state
