@@ -4,6 +4,7 @@ import Book from './Book';
 import * as BooksAPI from './BooksAPI';
 import PropTypes from 'prop-types';
 import sortBy from 'sort-by';
+import debounce from 'lodash.debounce';
 
 /**
 * @description SearchBooks component
@@ -79,10 +80,10 @@ class SearchBooks extends Component {
     * Updates the query state so that the page is rendered in real time
     * as the user types a query in the search bar
     */
-    updateQuery = (query) => {
+    updateQuery = debounce((query) => {
         this.setState({query});
         this.updateShowingBooks(query);
-    };
+    });
 
     render() {
         let {query, showingBooks} = this.state
