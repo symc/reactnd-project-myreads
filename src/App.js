@@ -47,9 +47,13 @@ class BooksApp extends Component {
     */
     updateShelfOfBook = (bookToUpdate, newShelf) => {
         BooksAPI.update(bookToUpdate, newShelf).then(() => {
-        BooksAPI.getAll().then((books) => {
-                this.setState({books}); 
-            });
+                bookToUpdate.shelf = newShelf
+            
+                // Filter out the book and append it to the end of the list
+                // so it appears at the end of whatever shelf it was added to.
+                this.setState({books: this.state.books.filter((book) => (
+                    book.id !== bookToUpdate.id
+                )).concat([ bookToUpdate ])});
         });
     };
 

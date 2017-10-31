@@ -14,15 +14,16 @@ import PropTypes from 'prop-types';
 */
 class Book extends Component {
     render() {
-        const imageLink = this.props.book.imageLinks.smallThumbnail;
+        const {book, updateShelfOfBook} = this.props;
+        const imageLink = book.imageLinks.smallThumbnail;
         const style = {
             width: 128,
             height: 192,
             backgroundImage: 'url(' + imageLink +')'
         };
-        const title = this.props.book.title;
-        const author = this.props.book.authors.join(', ');
-        const shelf = this.props.book.shelf;
+        const title = book.title;
+        const author = book.authors ? book.authors.join(', ') : '';
+        const shelf = book.shelf;
         return (
             <div className="book">
                 <div className="book-top">
@@ -30,7 +31,7 @@ class Book extends Component {
                     <BookshelfChanger 
                         shelf={shelf}
                         updateShelfOfBook={(newShelf) => {
-                            this.props.updateShelfOfBook(this.props.book, newShelf)
+                            updateShelfOfBook(book, newShelf)
                         }}
                     />
                 </div>

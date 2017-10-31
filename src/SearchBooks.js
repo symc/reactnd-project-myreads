@@ -57,7 +57,6 @@ class SearchBooks extends Component {
                     this.setState({showingBooks: []});
                 } else {
                     books = books.filter((book) => book.imageLinks);
-                    books = books.filter((book) => book.authors);
                     if (books.length > 0) {
                         this.updateShelfFields(books);
                         this.setState({showingBooks: books});
